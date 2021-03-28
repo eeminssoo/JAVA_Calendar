@@ -13,23 +13,53 @@ public class calendar {
 	{
 		return isleapYear(year) && month ==2 ? 29 : days[month - 1];
 	}
+	
+	public static int getWeekDay(String weekday)
+	{
+		if(weekday.equals("SU"))
+			return 0;
+		else if(weekday.equals("MO"))
+			return 1;
+		else if(weekday.equals("TU"))
+			return 2;
+		else if(weekday.equals("WE"))
+			return 3;
+		else if(weekday.equals("TH"))
+			return 4;
+		else if(weekday.equals("FR"))
+			return 5;
+		else if(weekday.equals("SA"))
+			return 6;
+		else 
+			return 0;
+	}
 
-	public static void calprint(int year, int month)
+	public static void calprint(int year, int month, String weekday)
 	{
 		if(month != -1)
 		{
+			int count = 0;
 			int monthdays = getDay(year, month);
 			System.out.printf("<<%4d년 %2d월>>\n", year, month);
 			System.out.println(" SU MO TU WE TH FR SA");
 			System.out.println(" --------------------");
-			
-			for(int i=1; i<=monthdays; i++)
+			for(int i=0; i<getWeekDay(weekday); i++)
+			{
+				System.out.print("   ");
+			}
+			for(int i=1; i<=7-getWeekDay(weekday); i++)
 			{
 				System.out.printf("%3d", i);
-				if((i % 7)== 0 || i == monthdays)
+			}
+			System.out.println("");
+			for(int i=7-getWeekDay(weekday)+1; i<=monthdays; i++)
+			{
+				count++;
+				System.out.printf("%3d", i);
+				if((count % 7)== 0 || i == monthdays)
 					System.out.println("");
 			}
-			
+			count = 0;
 			/*System.out.println(" 1  2  3  4  5  6  7");
 			System.out.println(" 8  9 10 11 12 13 14");
 			System.out.println("15 16 17 18 19 20 21");

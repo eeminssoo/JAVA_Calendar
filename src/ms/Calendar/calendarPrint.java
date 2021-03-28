@@ -13,7 +13,8 @@ public class calendarPrint {
 		
 		while(true)
 		{
-			System.out.println("년, 월을 입력하세요. : ");
+			System.out.println("년, 월, 요일을 입력하세요. : ");
+			System.out.println("(ex.2021,1,MO), EXIT = -1");
 			System.out.print("> ");
 			
 			String inputVal = scanner.nextLine();
@@ -24,10 +25,7 @@ public class calendarPrint {
 			int year = Integer.parseInt(splitVal[0]);
 			int month = Integer.parseInt(splitVal[1]);
 			
-			if(month > 12)
-				continue;
-			
-			cd.calprint(year, month);
+			cd.calprint(year, month, splitVal[2]);
 		}
 		
 		System.out.println("Have a nice day!");
