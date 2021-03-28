@@ -6,17 +6,28 @@ public class calendarPrint {
 	
 	public static void calprint()
 	{
-		int inputVal = 0;
+		int monthVal = 0;
+		int yearVal = 0;
 		Scanner scanner = new Scanner(System.in);
 		calendar cd = new calendar();
 		
-		while(inputVal != -1)
+		while(true)
 		{
-			System.out.println("월을 입력하세요. : ");
+			System.out.println("년, 월을 입력하세요. : ");
 			System.out.print("> ");
 			
-			inputVal = scanner.nextInt();
-			cd.calprint(2021, inputVal);
+			String inputVal = scanner.nextLine();
+			if(inputVal.equals("-1"))
+				break;
+			
+			String[] splitVal = inputVal.split(",");
+			int year = Integer.parseInt(splitVal[0]);
+			int month = Integer.parseInt(splitVal[1]);
+			
+			if(month > 12)
+				continue;
+			
+			cd.calprint(year, month);
 		}
 		
 		System.out.println("Have a nice day!");
