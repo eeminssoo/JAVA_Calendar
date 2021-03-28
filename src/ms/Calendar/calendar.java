@@ -2,7 +2,8 @@ package ms.Calendar;
 
 public class calendar {
 	
-	private static final int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private static int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private static final String[] dayName = {"SU","MO","TU","WE","TH","FR","SA"};
 	
 	public static boolean isleapYear(int year)
 	{
@@ -12,6 +13,38 @@ public class calendar {
 	public static int getDay(int year, int month)
 	{
 		return isleapYear(year) && month ==2 ? 29 : days[month - 1];
+	}
+	
+	
+	public static String getweekDayName(int year, int month)
+	{
+		int count = 0;
+		if(isleapYear(year))
+			days[1] = 29;
+		for(int i=1970; i<year; i++)
+		{
+			int delta = isleapYear(i)? 366 : 365;
+			count += delta;
+		}
+		for(int i = 1; i<month ; i++)
+		{
+			count += days[i-1];
+		}
+		int answer_day = (4+count)%7;
+		
+		return dayName[answer_day];
+		
+		/*if(isleapYear(year))
+			days[1] = 29;
+		
+		int total_day = 0;
+		for(int i=1; i<month; i++)
+		{
+			total_day += days[i-1];
+		}
+		int answer_day = (5+total_day)%7;
+		
+		return dayName[answer_day];*/
 	}
 	
 	public static int getWeekDay(String weekday)
@@ -34,7 +67,7 @@ public class calendar {
 			return 0;
 	}
 
-	public static void calprint(int year, int month, String weekday)
+	public static void calprint(int year, int month)
 	{
 		if(month != -1)
 		{
@@ -43,16 +76,16 @@ public class calendar {
 			System.out.printf("<<%4d년 %2d월>>\n", year, month);
 			System.out.println(" SU MO TU WE TH FR SA");
 			System.out.println(" --------------------");
-			for(int i=0; i<getWeekDay(weekday); i++)
+			for(int i=0; i<getWeekDay(getweekDayName(year,month)); i++)
 			{
 				System.out.print("   ");
 			}
-			for(int i=1; i<=7-getWeekDay(weekday); i++)
+			for(int i=1; i<=7-getWeekDay(getweekDayName(year,month)); i++)
 			{
 				System.out.printf("%3d", i);
 			}
 			System.out.println("");
-			for(int i=7-getWeekDay(weekday)+1; i<=monthdays; i++)
+			for(int i=7-getWeekDay(getweekDayName(year,month))+1; i<=monthdays; i++)
 			{
 				count++;
 				System.out.printf("%3d", i);
