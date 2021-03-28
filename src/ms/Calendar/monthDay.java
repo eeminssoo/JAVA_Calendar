@@ -1,3 +1,7 @@
+/*
+ * 반복 입력이 가능하도록 변경
+ */
+
 package ms.Calendar;
 
 import java.util.Scanner;
@@ -12,16 +16,35 @@ public class monthDay {
 	
 	public static void main(String[] args)
 	{
-		System.out.println("달을 입력하세요. : ");
+		System.out.println("반복횟수를 입력하세요. : ");
 		
 		Scanner scanner = new Scanner(System.in);
 		int inputVal = scanner.nextInt();
-		
-		if(inputVal > 0 && inputVal <= 12)
-			System.out.println(inputVal+"월은 "+getdaysOfMonth(inputVal)+"일까지 있습니다.");
-		else 
-			System.out.println("잘못된 월을 입력하였습니다.");
-		
+		/*
+		int[] inputMonth = new int[inputVal];
+		System.out.println("월을 입력하세요. : ");
+		for(int i=0; i<inputVal; i++)
+		{
+			inputMonth[i] = scanner.nextInt();
+		}
+		for(int j=0; j<inputVal; j++)
+		{
+			if(inputMonth[j] > 0 && inputMonth[j] <= 12)
+				System.out.println(inputMonth[j]+"월은 "+getdaysOfMonth(inputMonth[j])+"일까지 있습니다.");
+			else 
+				System.out.println("잘못된 월을 입력하였습니다.");
+		}
+		*/
+		System.out.println("월을 입력하세요. : ");
+		for(int i=0; i<inputVal; i++)
+		{
+			int inputMonth =  scanner.nextInt();
+			if(inputMonth > 0 && inputMonth <= 12)
+				System.out.println(inputMonth+"월은 "+getdaysOfMonth(inputMonth)+"일까지 있습니다.");
+			else 
+				System.out.println("잘못된 월을 입력하였습니다.");
+		}
+		System.out.println("the end");
 		scanner.close();
 	}
 }
