@@ -13,19 +13,52 @@ public class calendarPrint {
 		
 		while(true)
 		{
-			System.out.println("년, 월을 입력하세요. : ");
-			System.out.println("(ex.2021,1), EXIT = -1");
+			System.out.println("+----------------------+");
+			System.out.println("| 1. 일정 등록   ");
+			System.out.println("| 2. 일정 검색");
+			System.out.println("| 3. 달력 보기");
+			System.out.println("| h. 도움말 q. 종료");
+			System.out.println("+----------------------+");
+			System.out.println("명령 (1, 2, 3, h, q)");
 			System.out.print("> ");
 			
 			String inputVal = scanner.nextLine();
-			if(inputVal.equals("-1"))
+			if(inputVal.equals("1"))
+			{
+				System.out.println("[일정 등록] 날짜를 입력하세요.");
+				System.out.print("> ");
+				String dateVal = scanner.nextLine();
+				System.out.println("일정을 입력하세요.");
+				System.out.print("> ");
+				String todoVal = scanner.nextLine();
+				
+				cd.inputCal(dateVal, todoVal);
+				System.out.println("일정이 등록되었습니다.");
+				continue;
+			}
+			else if(inputVal.equals("2"))
+			{
+				System.out.println("[일정 검색] 날짜를 입력하세요.");
+				System.out.print("> ");
+				String dateVal = scanner.nextLine();
+				
+				cd.getCal(dateVal);
+				continue;
+			}
+			else if(inputVal.equals("3"))
+			{
+				System.out.println("[달력 보기] 날짜를 입력하세요.");
+				System.out.print("> ");
+				String dateVal = scanner.nextLine();
+				
+				cd.hadCal(dateVal);
+				continue;
+			}
+			else if(inputVal.equals("h"))
+				break;
+			else
 				break;
 			
-			String[] splitVal = inputVal.split(",");
-			int year = Integer.parseInt(splitVal[0]);
-			int month = Integer.parseInt(splitVal[1]);
-			
-			cd.calprint(year, month);
 		}
 		
 		System.out.println("Have a nice day!");
