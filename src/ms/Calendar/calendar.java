@@ -3,12 +3,12 @@ package ms.Calendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class calendar {
 	
 	private static int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	private static final String[] dayName = {"SU","MO","TU","WE","TH","FR","SA"};
 	private static HashMap<String, ArrayList<String>> cld = new HashMap<String,ArrayList<String>>();
-	private static ArrayList<String> todoList = new ArrayList<String>();
 	
 	public static boolean isleapYear(int year)
 	{
@@ -74,20 +74,39 @@ public class calendar {
 	
 	public static void inputCal(String date, String todo)
 	{
+		ArrayList<String> putList = new ArrayList<String>();
 		
-		todoList.add(todo);
-		cld.put(date, todoList);
+		if(cld.containsKey(date))
+		{
+			putList = cld.get(date);
+			putList.add(todo);
+			cld.put(date, putList);
+		}
+		else
+		{
+			putList.add(todo);
+			cld.put(date, putList);
+		}
+		
 	}
 	
 	public static void getCal(String date)
 	{
 		ArrayList<String> getList = new ArrayList<String>();
-		getList = cld.get(date);
-		
-		for(int i=0; i<getList.size(); i++)
+		if(cld.containsKey(date))
 		{
-			System.out.println((i+1)+"."+getList.get(i));
+			getList = cld.get(date);
+			
+			for(int i=0; i<getList.size(); i++)
+			{
+				System.out.println((i+1)+"."+getList.get(i));
+			}
 		}
+		else
+		{
+			System.out.println("일정이 없습니다.");
+		}
+		
 	}
 	
 	public static void hadCal(String date)
@@ -103,6 +122,26 @@ public class calendar {
 		}
 		else 
 			calprint(year, month);
+	}
+	
+	public static void editCal(String date, String todoNo, String todo)
+	{
+		ArrayList<String> editList = new ArrayList<String>();
+		int todoNoint = Integer.parseInt(todoNo);
+		
+		if(cld.containsKey(date))
+		{
+			editList = cld.get(date);
+			
+			editList.remove(todoNoint-1);
+			editList.add(todoNoint-1, todo);
+			cld.put(date, editList);
+		}
+		else
+		{
+			System.out.println("일정이 없습니다.");
+		}
+		
 	}
 
 	public static void calprint(int year, int month, int day)
@@ -122,9 +161,10 @@ public class calendar {
 			{
 				if(day == i)
 				{
-					System.out.println(" ");
+					System.out.print(" ");
+					System.out.print(" ");
 					System.out.print(".");
-					System.out.printf("%2d", i);
+					System.out.printf("%1d", i);
 				}
 				else
 					System.out.printf("%4d", i);
