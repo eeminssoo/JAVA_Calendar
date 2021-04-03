@@ -55,22 +55,25 @@ public class calendar {
 	
 	public static int getWeekDay(String weekday)
 	{
-		if(weekday.equals("SU"))
+		switch(weekday)
+		{
+		case "SU" :
 			return 0;
-		else if(weekday.equals("MO"))
+		case "MO" :
 			return 1;
-		else if(weekday.equals("TU"))
+		case "TU" :
 			return 2;
-		else if(weekday.equals("WE"))
+		case "WE" :
 			return 3;
-		else if(weekday.equals("TH"))
+		case "TH" :
 			return 4;
-		else if(weekday.equals("FR"))
+		case "FR" :
 			return 5;
-		else if(weekday.equals("SA"))
+		case "SA" :
 			return 6;
-		else 
+		default :
 			return 0;
+		}
 	}
 	
 	public static void nowCal()
