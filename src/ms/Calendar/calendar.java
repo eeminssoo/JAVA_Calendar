@@ -2,6 +2,7 @@ package ms.Calendar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Calendar;
 
 
 public class calendar {
@@ -70,6 +71,31 @@ public class calendar {
 			return 6;
 		else 
 			return 0;
+	}
+	
+	public static void nowCal()
+	{
+		ArrayList<String> nowList = new ArrayList<String>();
+		Calendar cal = Calendar.getInstance();
+		
+		int year = cal.get(cal.YEAR);
+		int month = cal.get(cal.MONTH)+1;
+		int date = cal.get(cal.DATE);
+		String today = "";
+		
+		if(month < 10 && date >= 10)
+			today = year+ "-0" + month + "-" + date;
+		else if(date < 10 && month >= 10)
+			today = year+ "-" + month + "-0" + date;
+		else if(month < 10 && date < 10)
+			today = year+ "-0" + month + "-0" + date;
+		else
+			today = year+ "-" + month + "-" + date;
+		
+		System.out.println("오늘의 일정");
+		System.out.println(today);
+		getCal(today);
+		
 	}
 	
 	public static void inputCal(String date, String todo)

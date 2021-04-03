@@ -13,6 +13,7 @@ public class calendarPrint {
 		
 		while(true)
 		{
+			cd.nowCal();
 			System.out.println("+----------------------+");
 			System.out.println("| 1. 일정 등록   ");
 			System.out.println("| 2. 일정 검색");
